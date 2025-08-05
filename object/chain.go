@@ -88,7 +88,7 @@ func InvokeContract(chainmakerInfo ChainmakerInfo) (ChainmakerTxInfo, error) {
 	}
 
 	if resp.Code != common.TxStatusCode_SUCCESS {
-		return ChainmakerTxInfo{}, fmt.Errorf("InvokeContract() error, result = %s, message = %s", resp.ContractResult.Result, resp.ContractResult.Message)
+		return ChainmakerTxInfo{}, fmt.Errorf("InvokeContract() error: %v", resp.Message)
 	}
 
 	txId := resp.TxId
