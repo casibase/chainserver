@@ -105,6 +105,9 @@ func InvokeContract(chainmakerInfo ChainmakerInfo) (ChainmakerTxInfo, error) {
 
 	block := strconv.FormatUint(transactionInfo.GetBlockHeight(), 10)
 	blockHash := blockInfo.GetBlock().GetBlockHashStr()
+
+	defer client.Stop()
+
 	return ChainmakerTxInfo{TxId: txId, Block: block, BlockHash: blockHash}, nil
 }
 
@@ -149,6 +152,9 @@ func QueryContract(chainmakerInfo ChainmakerInfo) (ChainmakerTxInfo, error) {
 		Block:  strconv.FormatUint(transactionInfo.GetBlockHeight(), 10),
 		Result: string(resultBytes),
 	}
+
+	defer client.Stop()
+
 	return txInfo, nil
 }
 
